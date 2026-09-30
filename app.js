@@ -43,3 +43,54 @@ const fechaFormateada = fechaActual.toLocaleDateString("es-ES", {
 });
 
 console.log("Fecha formateada:", fechaFormateada);
+
+// 2. Limpieza del correo
+
+const correoEntrada = "  RENZO.DOMINGUEZ@CINEVERSE.COM  ";
+const codigoSocio = 89;
+
+// Limpieza y normalización del correo
+const correoLimpio = correoEntrada.trim().toLowerCase();
+
+// Separación del usuario y dominio
+const partesCorreo = correoLimpio.split("@");
+const nombreUsuario = partesCorreo[0];
+const dominioCorreo = partesCorreo[1];
+
+// Formateo del código de socio
+const codigoSocioFormateado = String(codigoSocio).padStart(6, "0");
+
+// Comprobaciones
+console.log("---- DATOS DEL SOCIO ----");
+console.log("Correo original:", correoEntrada);
+console.log("Correo limpio:", correoLimpio);
+console.log("Nombre de usuario:", nombreUsuario);
+console.log("Dominio:", dominioCorreo);
+console.log("Código socio original:", codigoSocio);
+console.log("Código socio formateado:", codigoSocioFormateado);
+console.log("--------------------------");
+
+console.log("Tipo código original:", typeof codigoSocio);
+console.log("Tipo código formateado:", typeof codigoSocioFormateado);
+
+// 3. Asignación de preferencias
+
+let apodo = "";
+let tipoSuscripcion = null;
+let entradasRegalo = 0;
+
+console.log("---- PREFERENCIAS ORIGINALES ----");
+console.log("Apodo:", apodo);
+console.log("Suscripción:", tipoSuscripcion);
+console.log("Entradas regalo:", entradasRegalo);
+
+// Asignaciones lógicas
+apodo ||= "Espectador VIP";
+tipoSuscripcion ??= "Básica";
+entradasRegalo ??= 2;
+
+console.log("---- PREFERENCIAS ASIGNADAS ----");
+console.log("Apodo:", apodo);
+console.log("Suscripción:", tipoSuscripcion);
+console.log("Entradas regalo:", entradasRegalo);
+console.log("---------------------------------");
