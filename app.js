@@ -235,3 +235,94 @@ if (reservaActiva && temporizadorReserva === null) {
 } else {
     console.log("La reserva ya había expirado.");
 }
+
+// BLOQUE 4: Reseñas de películas, seguridad y persistencia
+
+const campoOpinion = document.getElementById("opinion");
+const botonEnviarResena = document.getElementById("btn-enviar-resena");
+const listaResenas = document.getElementById("lista-resenas");
+const CLAVE_RESENAS = "cineverse_resenas";
+
+// Recuperar las reseñas almacenadas
+function cargarResenas() {
+    const datosGuardados = localStorage.getItem(CLAVE_RESENAS);
+
+    if (datosGuardados === null) {
+        return [];
+    }
+
+    try {
+        return JSON.parse(datosGuardados);
+    } catch (error) {
+        console.error("Error al recuperar las reseñas:", error);
+        return [];
+    }
+}
+
+// Guardar las reseñas en localStorage
+function guardarResenas(resenas) {
+    try {
+        const resenasJSON = JSON.stringify(resenas);
+        localStorage.setItem(CLAVE_RESENAS, resenasJSON);
+    } catch (error) {
+        console.error("Error al guardar las reseñas:", error);
+    }
+}
+
+// Mostrar las reseñas de forma segura en el DOM
+function renderizarResenas() {
+    const resenas = cargarResenas();
+
+    listaResenas.textContent = "";
+
+    resenas.forEach((resena) => {
+        const articulo = document.createElement("article");
+
+        const socio = document.createElement("strong");
+        socio.textContent = resena.socio;
+
+        const hora = document.createElement("span");
+        hora.textContent = ` - ${resena.hora}`;
+
+        const opinion = document.createElement("p");
+        opinion.textContent = resena.opinion;
+
+        articulo.appendChild(socio);
+        articulo.appendChild(hora);
+        articulo.appendChild(opinion);
+
+        listaResenas.appendChild(articulo);
+    });
+}
+
+// Registrar una nueva reseña
+botonEnviarResena.addEventListener("click", () => {
+    const opinion = campoOpinion.value.trim();
+
+    if (opinion === "") {
+        console.log("No se puede enviar una reseña vacía.");
+        return;
+    }
+
+    const fechaCreacion = Date.now();
+    const horaEnvio = new Date().toLocaleTimeString("es-ES");
+
+    const nuevaResena = {
+        timestamp: fechaCreacion,
+        socio: usuarioURL,
+        hora: horaEnvio,
+        opinion: opinion
+    };
+
+    const resenas = cargarResenas();
+
+    resenas.push(nuevaResena);
+
+    guardarResenas(resenas);
+    renderizarResenas();
+
+    campoOpinion.value = "";
+});
+
+// Mostrar las reseñas almacenadas al cargar la página
+renderizarResenas();
