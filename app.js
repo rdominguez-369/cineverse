@@ -189,3 +189,49 @@ console.log("--------------------------------");
 
 console.log("Tipo precio final:", typeof precioFinal);
 console.log("Tipo precio formateado:", typeof precioFinalFormateado);
+
+// BLOQUE 3: Temporizador y control de estado
+
+const tiempoGuardado = localStorage.getItem("tiempoRestante");
+
+let tiempoRestante =
+    tiempoGuardado !== null ? Number(tiempoGuardado) : 20;
+
+let reservaActiva = tiempoRestante > 0;
+let temporizadorReserva = null;
+
+// Comprobación del tiempo recuperado
+console.log("---- RECUPERACIÓN DEL TEMPORIZADOR ----");
+console.log("Valor almacenado:", tiempoGuardado);
+console.log("Tiempo utilizado:", tiempoRestante);
+console.log("Tipo:", typeof tiempoRestante);
+console.log("---------------------------------------");
+
+// Comprobación del estado inicial
+console.log("---- ESTADO INICIAL DE LA RESERVA ----");
+console.log("Tiempo restante:", tiempoRestante);
+console.log("¿Reserva activa?:", reservaActiva);
+console.log("--------------------------------------");
+
+// Temporizador de la oferta
+if (reservaActiva && temporizadorReserva === null) {
+    temporizadorReserva = setInterval(() => {
+        tiempoRestante--;
+
+        localStorage.setItem("tiempoRestante", tiempoRestante);
+
+        console.log(`Tiempo restante: ${tiempoRestante} segundos`);
+
+        if (tiempoRestante <= 0) {
+            clearInterval(temporizadorReserva);
+
+            temporizadorReserva = null;
+            reservaActiva = false;
+
+            console.log("La reserva ha expirado.");
+            console.log("Estado final de la reserva:", reservaActiva);
+        }
+    }, 1000);
+} else {
+    console.log("La reserva ya había expirado.");
+}
