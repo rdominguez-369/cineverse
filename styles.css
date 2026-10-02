@@ -1,15 +1,285 @@
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
+/* ========================================
+   CINEVERSE - ESTILOS GENERALES
+   ======================================== */
+
+* {
+    box-sizing: border-box;
 }
 
-header,
-main,
-footer {
-    padding: 20px;
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #0f1117;
+    color: #f5f5f5;
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   CABECERA
+   ======================================== */
+
+header {
+    background-color: #171a23;
+    text-align: center;
+    padding: 30px 20px;
+    border-bottom: 3px solid #e50914;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #e50914;
+}
+
+header p {
+    margin: 5px 0 0;
+    color: #cccccc;
+}
+
+
+/* ========================================
+   CONTENIDO PRINCIPAL
+   ======================================== */
+
+main {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
 }
 
 section {
-    margin-bottom: 30px;
+    background-color: #1b1f2a;
+    margin-bottom: 25px;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+section h2 {
+    margin-top: 0;
+    color: #ffffff;
+    border-bottom: 2px solid #e50914;
+    padding-bottom: 10px;
+}
+
+
+/* ========================================
+   PERFIL DEL ESPECTADOR
+   ======================================== */
+
+#perfil p {
+    margin: 8px 0;
+}
+
+#perfil strong {
+    color: #f1c40f;
+}
+
+#estado-red {
+    font-weight: bold;
+}
+
+
+/* ========================================
+   TAQUILLA
+   ======================================== */
+
+#taquilla {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#taquilla h2 {
+    width: 100%;
+}
+
+.tarjeta-precio {
+    flex: 1 1 250px;
+    background-color: #252a38;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #3a4052;
+    text-align: center;
+}
+
+.tarjeta-precio h3 {
+    margin-top: 0;
+    color: #f1c40f;
+}
+
+.tarjeta-precio strong {
+    font-size: 1.4rem;
+    color: #ffffff;
+}
+
+
+/* ========================================
+   PROMOCIÓN VENTA ANTICIPADA
+   ======================================== */
+
+#oferta {
+    text-align: center;
+    border: 2px solid #e50914;
+}
+
+#oferta h2 {
+    color: #f1c40f;
+}
+
+#btn-descuento-flash {
+    background-color: #e50914;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#btn-descuento-flash:hover {
+    background-color: #b20710;
+}
+
+#contador-flash {
+    color: #f1c40f;
+    font-size: 1.5rem;
+}
+
+
+/* ========================================
+   RESUMEN DE COMPRA
+   ======================================== */
+
+#resumen p {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    margin: 0;
+    border-bottom: 1px solid #3a4052;
+}
+
+#resumen strong {
+    color: #f1c40f;
+}
+
+#resumen p:last-child {
+    margin-top: 10px;
+    padding-top: 15px;
+    border-bottom: none;
+    font-size: 1.2rem;
+}
+
+
+/* ========================================
+   RESEÑAS
+   ======================================== */
+
+#resenas label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+#opinion {
+    width: 100%;
+    min-height: 110px;
+    padding: 12px;
+    border: 1px solid #3a4052;
+    border-radius: 6px;
+    background-color: #252a38;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+}
+
+#opinion:focus {
+    outline: 2px solid #e50914;
+}
+
+#btn-enviar-resena {
+    margin-top: 12px;
+    padding: 10px 18px;
+    background-color: #e50914;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#btn-enviar-resena:hover {
+    background-color: #b20710;
+}
+
+#lista-resenas {
+    margin-top: 20px;
+}
+
+#lista-resenas article {
+    background-color: #252a38;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-left: 4px solid #e50914;
+    border-radius: 6px;
+}
+
+#lista-resenas article strong {
+    color: #f1c40f;
+}
+
+#lista-resenas article span {
+    color: #aaaaaa;
+    font-size: 0.9rem;
+}
+
+#lista-resenas article p {
+    margin-bottom: 0;
+}
+
+
+/* ========================================
+   PIE DE PÁGINA
+   ======================================== */
+
+footer {
+    background-color: #171a23;
+    text-align: center;
+    padding: 20px;
+    color: #aaaaaa;
+    border-top: 1px solid #3a4052;
+}
+
+
+/* ========================================
+   DISEÑO RESPONSIVE
+   ======================================== */
+
+@media (max-width: 600px) {
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    main {
+        width: 95%;
+    }
+
+    section {
+        padding: 18px;
+    }
+
+    #taquilla {
+        flex-direction: column;
+    }
+
+    .tarjeta-precio {
+        width: 100%;
+    }
+
+    #resumen p {
+        flex-direction: column;
+    }
 }
